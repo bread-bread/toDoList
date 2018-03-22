@@ -1,0 +1,10 @@
+.done {
+    text-decoration: line-through;
+}
+.done,
+.inProgress {
+    display: block;
+    text-transform: uppercase;
+    width: 80%;
+    margin-right: 10px;
+}
