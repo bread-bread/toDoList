@@ -1,38 +1,27 @@
-import React, { Component } from 'react';
-//import './item.css';
+import React from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-export default class Input extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: this.props.todoText
-        };
+class Input extends React.Component {
 
-        this.handleChange = this.handleChange.bind(this);
-        this.addTodo = this.addTodo.bind(this);
-    }
-
-    handleChange(e) {
-        this.setState({
-            value: e.target.value
-        })
-    }
-
-    addTodo(todo) {
-        if (todo.length > 0) {
-            this.props.addTodo(todo);
-            this.setState({
-                value: ''
-            });
-        }
-    }
-
-    render() {
-        return (
-            <div className="input-wrap">
-                <input type="text" value={this.state.value} onChange={this.handleChange} />
-                <button onClick={() => this.addTodo(this.state.value)} className="btn">Добавить</button> 
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className="input-wrap">
+        <input type="text" ref="todo" placeholder="Введите задание" />
+        <button
+          onClick={() => {
+            this.props.addTodo(this.refs.todo.value);
+            this.refs.todo.value = "";
+          }}
+          className="btn"
+        >
+          Добавить
+        </button>
+      </div>
+    );
+  }
 }
+
+export default connect(() => {
+  return {};
+})(Input);
