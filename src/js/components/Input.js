@@ -10,8 +10,10 @@ class Input extends React.Component {
         <input type="text" ref="todo" placeholder="Введите задание" />
         <button
           onClick={() => {
-            this.props.addTodo(this.refs.todo.value);
-            this.refs.todo.value = "";
+            if (this.refs.todo.value != "") {
+              this.props.addTodo(this.refs.todo.value);
+              this.refs.todo.value = "";
+            }
           }}
           className="btn"
         >
